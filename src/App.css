@@ -67,6 +67,9 @@ body {
   display: inline-block;
   margin: 0;
 }
+.menu-item a {
+  text-decoration: none;
+}
 
 .menu-link {
   color: #fff;

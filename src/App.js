@@ -4,12 +4,12 @@ import AppContainer from './components/app-container'
 import './App.css'
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props, context) {
+    super(props, context)
     this.state = {
       data: [],
       isFetching: true,
-      candidateType: 'prefeitos'
+      candidateType: props.params.candidate || 'prefeitos'
     }
   }
 
