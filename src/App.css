@@ -13,7 +13,7 @@ body {
   padding: 0;
   margin: 0;
   background: #eee;
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: 'Lato', Arial, sans-serif;
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,9 +46,9 @@ body {
 }
 
 .header-logo {
-  background: url('http://www.imarui.sc.gov.br/thumbs/642/1035164_resize_1000_.png') no-repeat;
-  background-size: 100%;
-  max-width: 4em;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Bras%C3%A3o_guaramirim.png/180px-Bras%C3%A3o_guaramirim.png') no-repeat;
+  background-size: cover;
+  max-width: 3em;
   height: 3em;
   text-indent: -9999em;
 }
