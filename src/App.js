@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       data: [],
       isFetching: true,
-      candidateType: props.params.candidate || 'prefeitos'
+      candidateType: props.params.type || 'prefeitos'
     }
   }
 
@@ -53,6 +53,7 @@ class App extends Component {
         isFetching={this.state.isFetching}
         candidateType={this.state.candidateType}
         handleMenu={this.handleMenu(this.state.candidateType)}
+        children={this.props.children}
       />
     )
   }

@@ -6,13 +6,13 @@ const Menu = ({ candidateType, handleMenu }) => {
     <nav className='menu'>
       <ul className='menu-list'>
         <li className='menu-item'>
-          <Link to={`/prefeitos`}>
-            <span onClick={() => handleMenu('prefeitos')} className={`menu-link menu-link--prefeitos ${candidateType}`}>Prefeitos</span>
+          <Link to={`/prefeitos`} activeClassName='active'>
+            <span onClick={() => handleMenu('prefeitos')} className='menu-link'>Prefeitos</span>
           </Link>
         </li>
         <li className='menu-item'>
-          <Link to={`/vereadores`}>
-          <span onClick={() => handleMenu('vereadores')} className={`menu-link menu-link--vereadores ${candidateType}`}>Vereadores</span>
+          <Link to={`/vereadores`} activeClassName='active'>
+          <span onClick={() => handleMenu('vereadores')} className='menu-link'>Vereadores</span>
           </Link>
         </li>
       </ul>
