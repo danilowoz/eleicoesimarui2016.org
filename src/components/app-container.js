@@ -4,20 +4,25 @@ import Footer from './footer'
 import Loading from './loading'
 
 const AppContainer = ({
-    data,
-    isFetching,
-    candidateType,
-    handleMenu,
-    children
-  }) => {
+  data,
+  isFetching,
+  city,
+  candidateType,
+  handleMenu,
+  children
+}) => {
   return (
     <div className='app'>
-      <Header candidateType={candidateType} handleMenu={handleMenu} />
+      <Header
+        city={city}
+        handleMenu={handleMenu}
+      />
       <main className='main'>
         {isFetching && <Loading />}
         {!isFetching && children && React.cloneElement(children, {
-          className : handleMenu,
           data : data,
+          className : handleMenu,
+          city: city,
           candidateType : candidateType
         })}
       </main>

@@ -8,7 +8,7 @@ const User = (props) => {
   let candidate = _.filter(props.data, {id: candidateId})[0]
   return (
     <div>
-      <Link className='btn' to={`/${props.params.type}`}>« Voltar</Link>
+      <Link className='btn' to={`/${props.params.city}/${props.params.type}/`}>« Voltar</Link>
       <div className={`candidate-item candidate-item_full candidate-item--${candidateType}`}>
         <div className='candidate-item__avatar-full'>
           <img
