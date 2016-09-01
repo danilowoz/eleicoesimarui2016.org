@@ -10,6 +10,7 @@ class App extends Component {
     super(props, context)
     this.state = {
       data: [],
+      dataCandidate: [],
       isFetching: true,
       city: props.params.city,
       candidateType: props.params.type || 'prefeitos',
@@ -58,7 +59,7 @@ class App extends Component {
         axios.get(`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/2016/${cityCode}/2/candidato/${candidateId}`)
           .then(response => {
             this.setState({
-              data: response.data.candidatos
+              dataCandidate: response.data
             }, () => {
               this.setState({
                 isFetching: false
@@ -95,6 +96,7 @@ class App extends Component {
     return (
       <AppContainer
         data={this.state.data}
+        dataCandidate={this.state.dataCandidate}
         isFetching={this.state.isFetching}
         city={this.state.city}
         candidateType={this.state.candidateType}

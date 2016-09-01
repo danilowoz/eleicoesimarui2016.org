@@ -5,6 +5,7 @@ import Loading from './loading'
 
 const AppContainer = ({
   data,
+  dataCandidate,
   isFetching,
   city,
   candidateType,
@@ -22,6 +23,7 @@ const AppContainer = ({
         {isFetching && <Loading />}
         {!isFetching && children && React.cloneElement(children, {
           data : data,
+          dataCandidate : dataCandidate,
           className : handleMenu,
           city: city,
           candidateType : candidateType,

@@ -1,70 +1,72 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { Link } from 'react-router'
-import _ from 'lodash'
-import dataCities from './data-cities'
-import Loading from './loading'
 
-
-const CandidateInterface = (props) => {
-  let self = props.dataCandidate
+const User = (props) => {
+  let data = props.dataCandidate
   return (
     <div>
-      <Link className='btn' to={`/${props.originalProps.city}/${props.originalProps.candidateType}/`}>« Voltar</Link>
+      <Link className='btn' to={`/${props.params.city}/${props.params.type}/`}>« Voltar</Link>
       <img
-        alt={self.nomeCompleto}
-        className='candidate-item__avatar-item'
-        src={`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/${self.id}?x=1471489200000`}
+        alt={data.nomeCompleto}
+        src={`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/${props.candidateId}?x=1471489200000`}
       />
-      {self.nomeCompleto}
+      <h1>{data.nomeCompleto}</h1>
+      <p>{data.composicaoColigacao}</p>
+      <p>{`${data.partido.sigla} - ${data.partido.nome}`}</p>
+      <p>{data.numero}</p>
+      <p>Grau de instrução: {data.grauInstrucao}</p>
+      <p>CPF: {data.cpf}</p>
+      <p>Naturalidade: {data.descricaoNaturalidade}</p>
+      <p>Contato:
+        {data.emails.map((item, index) => {
+          return <a key={index} href={`maitl${item}`} target='_blank'>{item}<br/></a>
+        })}
+      </p>
+      <h2>Eleições anterioes</h2>
+      <table>
+        <tbody>
+        <tr>
+          <th>Cargo</th>
+          <th>Local</th>
+          <th>Ano</th>
+          <th>Partido</th>
+          <th>Situação</th>
+        </tr>
+        {data.eleicoesAnteriores.map((item, index) => {
+          return <Prevs key={index} data={item}/>
+        })}
+        </tbody>
+      </table>
+      {data.vices.length && <Vice data={data.vices[0]} />}
     </div>
+  )
+}
+
+const Vice = (props) => {
+  props = props.data
+  return (
+      <div>
+        <hr />
+        <h2>Vice</h2>
+        <img src={props.urlFoto} />
+        <h3>{props.nm_CANDIDATO}</h3>
+        <h3>{props.nm_PARTIDO}</h3>
+        <p>{`${props.sg_PARTIDO} - ${props.nm_PARTIDO}`}</p>
+      </div>
     )
 }
 
-
-class User extends Component {
-
-  constructor (props) {
-    super(props)
-    this.state = {
-      isFetchingMore: true,
-      dataCandidate: []
-    }
-  }
-
-  componentWillMount() {
-    this.getData()
-  }
-
-  getData() {
-    let cityCode = _.filter(dataCities, {slug: this.props.city})[0].id
-    let candidateId = this.props.candidateId
-
-    axios.get(`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/2016/${cityCode}/2/candidato/${candidateId}`)
-    .then(response => {
-      this.setState({
-        dataCandidate: response.data
-      }, () => {
-        this.setState({
-          isFetchingMore: false
-        })
-      })
-    })
-    .catch(error => {
-    })
-  }
-
-  render() {
-    return (
-
-      <div>
-        {this.state.isFetchingMore && <Loading />}
-        {!this.state.isFetchingMore && <CandidateInterface originalProps={this.props} data={this.state.dataCandidate} />}
-      </div>
-      )
-  }
-
+const Prevs = (props) => {
+  props = props.data
+  return (
+      <tr>
+          <td>{props.cargo}</td>
+          <td>{props.local}</td>
+          <td>{props.nrAno}</td>
+          <td>{props.partido}</td>
+          <td>{props.situacaoTotalizacao}</td>
+      </tr>
+    )
 }
-
 
 export default User
