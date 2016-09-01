@@ -16,13 +16,15 @@ class App extends Component {
       candidateId: props.params.id
     }
 
+
     this.componentWillUpdate = this.componentWillUpdate.bind(this)
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(nextProps.params.city !== nextState.city) {
+    if(nextProps.params.city !== nextState.city || nextProps.params.id !== nextState.candidateId) {
       this.setState({
         city: nextProps.params.city,
+        candidateId: nextProps.params.id,
         isFetching: true
       }, ()=> {
         this.getData()
@@ -46,24 +48,42 @@ class App extends Component {
   }
 
   getData() {
-    if( this.state.city ) {
-      console.log(this.state.city)
+    if(this.state.city) {
       let cityCode = _.filter(dataCities, {slug: this.state.city})[0].id
-      let candidateCode = (this.state.candidateType === 'prefeitos') ? '11' : '13'
+      let candidateType = (this.state.candidateType === 'prefeitos') ? '11' : '13'
+      let candidateId = this.state.candidateId
 
-      axios.get(`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2016/${cityCode}/2/${candidateCode}/candidatos`)
-        .then(response => {
-          this.setState({
-            data: response.data.candidatos
-          }, () => {
+      if( !!this.state.candidateId ) {
+        // for user
+        axios.get(`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/2016/${cityCode}/2/candidato/${candidateId}`)
+          .then(response => {
             this.setState({
-              isFetching: false
+              data: response.data.candidatos
+            }, () => {
+              this.setState({
+                isFetching: false
+              })
             })
           })
-        })
-        .catch(error => {
-          console.log(error);
-        })
+          .catch(error => {
+            console.log(error);
+          })
+      } else {
+        // for city
+        axios.get(`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2016/${cityCode}/2/${candidateType}/candidatos`)
+          .then(response => {
+            this.setState({
+              data: response.data.candidatos
+            }, () => {
+              this.setState({
+                isFetching: false
+              })
+            })
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        }
     } else {
       this.setState({
         isFetching: false
@@ -78,6 +98,7 @@ class App extends Component {
         isFetching={this.state.isFetching}
         city={this.state.city}
         candidateType={this.state.candidateType}
+        candidateId={this.state.candidateId}
         handleMenu={this.handleMenu(this.state.candidateType)}
         children={this.props.children}
       />

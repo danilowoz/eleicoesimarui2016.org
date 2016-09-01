@@ -8,6 +8,7 @@ const AppContainer = ({
   isFetching,
   city,
   candidateType,
+  candidateId,
   handleMenu,
   children
 }) => {
@@ -23,7 +24,8 @@ const AppContainer = ({
           data : data,
           className : handleMenu,
           city: city,
-          candidateType : candidateType
+          candidateType : candidateType,
+          candidateId: candidateId
         })}
       </main>
       <Footer />
