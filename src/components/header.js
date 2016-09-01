@@ -10,7 +10,7 @@ const Header = (props) => {
           <h1 className='header-logo'><Link to='/'>Eleições 2016</Link></h1>
         </div>
         <div className='header-menu'>
-          <Menu {...props} />
+          {props.city && <Menu {...props} /> }
         </div>
       </div>
     </header>

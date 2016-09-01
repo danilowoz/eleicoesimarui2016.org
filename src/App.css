@@ -256,6 +256,23 @@ body {
   font-size: 1.5em;
 }
 
+.candidate-user {
+  height: 400px;
+  padding: 15px;
+  margin-top: 15px;
+}
+.candidate-user * {
+  color: white;
+}
+
+.candidate-user.prefeitos {
+  background: #0b6e93;
+}
+
+.candidate-user.vereadores {
+  background: #FF9F05;
+}
+
 @keyframes loading {
   0% {
     transform: rotate(0);

@@ -3,17 +3,20 @@ import { Link } from 'react-router'
 
 const User = (props) => {
   let data = props.dataCandidate
+  console.log(data)
   return (
     <div>
       <Link className='btn' to={`/${props.params.city}/${props.params.type}/`}>« Voltar</Link>
-      <img
-        alt={data.nomeCompleto}
-        src={`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/${props.candidateId}?x=1471489200000`}
-      />
-      <h1>{data.nomeCompleto}</h1>
-      <p>{data.composicaoColigacao}</p>
-      <p>{`${data.partido.sigla} - ${data.partido.nome}`}</p>
-      <p>{data.numero}</p>
+      <header className={`candidate-user ${props.params.type}`}>
+        <img
+          alt={data.nomeCompleto}
+          src={`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/${props.candidateId}?x=1471489200000`}
+        />
+        <h1>{data.nomeCompleto}</h1>
+        <p>{data.composicaoColigacao}</p>
+        <p>{`${data.partido.sigla} - ${data.partido.nome}`}</p>
+        <p>{data.numero}</p>
+      </header>
       <p>Grau de instrução: {data.grauInstrucao}</p>
       <p>CPF: {data.cpf}</p>
       <p>Naturalidade: {data.descricaoNaturalidade}</p>
@@ -33,11 +36,13 @@ const User = (props) => {
           <th>Situação</th>
         </tr>
         {data.eleicoesAnteriores.map((item, index) => {
-          return <Prevs key={index} data={item}/>
+          if(item.cargo) {
+            return <Prevs key={index} data={item}/>
+          }
         })}
         </tbody>
       </table>
-      {data.vices.length && <Vice data={data.vices[0]} />}
+      {!!data.vices.length && <Vice data={data.vices[0]} />}
     </div>
   )
 }
