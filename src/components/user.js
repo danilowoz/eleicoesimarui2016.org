@@ -10,7 +10,7 @@ const User = (props) => {
       <header className={`candidate-user ${props.params.type}`}>
         <img
           alt={data.nomeCompleto}
-          src={`http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/${props.candidateId}?x=1471489200000`}
+          src={data.fotoUrl}
         />
         <h1>{data.nomeCompleto}</h1>
         <p>{data.composicaoColigacao}</p>
