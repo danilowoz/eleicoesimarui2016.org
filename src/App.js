@@ -18,7 +18,6 @@ class App extends Component {
       candidateId: props.params.id
     }
 
-
     this.componentWillUpdate = this.componentWillUpdate.bind(this)
   }
 

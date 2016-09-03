@@ -50,6 +50,16 @@ figure {
   background: #0b6e93;
 }
 
+.header_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: #0b6e93;
+  z-index: 99999;
+}
+
 .header-logo {
   width: 300px;
   font-weight: 300;
@@ -421,8 +431,9 @@ figure {
 }
 
 @media screen and (max-width: 580px) {
-  .header {
-    height: auto;
+  .header,
+  .header_wrap {
+    height: 60px;
   }
   .header-logo {
     font-size: 1.6em;

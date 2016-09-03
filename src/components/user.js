@@ -3,9 +3,16 @@ import { Link } from 'react-router'
 
 const User = (props) => {
   let data = props.dataCandidate
-  if(!data) {
-      return false
-  }
+  let params = props.params
+  return (
+    <div>
+      {(data.length !== 0) && <UserRender data={data} params={params} />}
+    </div>
+  )
+}
+
+const UserRender = (props) => {
+  let data = props.data
   return (
     <div>
       <Link className='btn' to={`/${props.params.city}/${props.params.type}/`}>« Voltar</Link>
