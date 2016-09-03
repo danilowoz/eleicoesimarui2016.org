@@ -50,6 +50,11 @@ class App extends Component {
 
   getData() {
     if(this.state.city) {
+
+      this.setState({
+        isFetching: true
+      })
+
       let cityCode = _.filter(dataCities, {slug: this.state.city})[0].id
       let candidateType = (this.state.candidateType === 'prefeitos') ? '11' : '13'
       let candidateId = this.state.candidateId

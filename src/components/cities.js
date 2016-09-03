@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 
 const Cities = (props) => {
   return(
-      <div>
+      <div className='select-city'>
         <h1 className='select-city_title'>Selecione sua cidade</h1>
-        <ul className='select-city'>
+        <ul className='select-city_list'>
         {dataCities.map(function(item, index){
           return <li key={index}><Link to={item.slug}> {item.name}</Link></li>
         })}
