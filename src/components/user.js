@@ -3,7 +3,9 @@ import { Link } from 'react-router'
 
 const User = (props) => {
   let data = props.dataCandidate
-  console.log(data)
+  if(!data) {
+      return false
+  }
   return (
     <div>
       <Link className='btn' to={`/${props.params.city}/${props.params.type}/`}>« Voltar</Link>

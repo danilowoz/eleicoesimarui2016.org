@@ -19,6 +19,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+figure {
+  margin: 0;
+  padding: 0;
+}
+
 #root, .app {
   height: 100%;
 }
@@ -110,6 +115,7 @@ body {
   color: #444;
   text-transform: uppercase;
   font-weight: 300;
+  letter-spacing: 0.2px;
 }
 
 
@@ -318,10 +324,7 @@ body {
 .user-header.vereadores {
   background: #FF9F05;
 }
-.user-header figure {
-  margin: 0;
-  padding: 0;
-}
+
 .user-header img {
   width: 160px;
   height: 225px;

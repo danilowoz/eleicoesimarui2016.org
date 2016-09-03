@@ -7,6 +7,7 @@ const AppContainer = ({
   data,
   dataCandidate,
   isFetching,
+  dataCities,
   city,
   candidateType,
   candidateId,
@@ -25,6 +26,7 @@ const AppContainer = ({
           data : data,
           dataCandidate : dataCandidate,
           className : handleMenu,
+          dataCities: dataCities,
           city: city,
           candidateType : candidateType,
           candidateId: candidateId

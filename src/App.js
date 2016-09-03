@@ -10,6 +10,7 @@ class App extends Component {
     super(props, context)
     this.state = {
       data: [],
+      dataCities: dataCities,
       dataCandidate: [],
       isFetching: true,
       city: props.params.city,
@@ -103,6 +104,7 @@ class App extends Component {
         data={this.state.data}
         dataCandidate={this.state.dataCandidate}
         isFetching={this.state.isFetching}
+        dataCities={this.state.dataCities}
         city={this.state.city}
         candidateType={this.state.candidateType}
         candidateId={this.state.candidateId}
